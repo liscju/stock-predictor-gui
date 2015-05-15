@@ -14,6 +14,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
             controller: 'WelcomeStockController'
         })
 
+        .when('/welcome_finish', {
+            templateUrl: 'views/welcome_finish.html',
+            controller: 'WelcomeFinishController'
+        })
+
         // nerds page that will use the NerdController
         .when('/nerds', {
             templateUrl: 'views/nerd.html',

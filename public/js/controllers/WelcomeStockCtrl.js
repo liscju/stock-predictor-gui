@@ -19,7 +19,7 @@ angular.module('WelcomeStockCtrl', []).controller('WelcomeStockController', func
     };
 
     $scope.gotoNextPage = function() {
-
+        $location.path("/welcome_finish");
     };
 
     $scope.gotoPrevPage = function() {

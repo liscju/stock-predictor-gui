@@ -2,6 +2,6 @@
 angular.module('stock-predictor-gui',
               ['ngRoute', 'appRoutes',
                'MainCtrl', 'NerdCtrl',
-               'WelcomePageCtrl','WelcomeStockCtrl',
+               'WelcomePageCtrl','WelcomeStockCtrl','WelcomeFinishCtrl',
                'NerdService']
 );
