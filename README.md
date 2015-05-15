@@ -35,3 +35,6 @@ Dodanie nowego serwisu:
 2. Dodaj nazwe modulu z serwisem w public/js/app.js
 3. Dodaj do kontrolera odwolanie do serwisu,masz wzor w WelcomeStockCtrl w deklaracji kontrolera
 
+Baza danych:
+Do testów korzystam z bazy ze swojej bazy w mongolab,jeżeli chcialbys
+uzyc innej zmien url w /config/db.js 
