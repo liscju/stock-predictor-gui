@@ -8,11 +8,13 @@ angular.module('StockServiceModule', []).factory('StockService', ['$http', funct
             return $http.post('/api/stocks', stockList);
         },
 
-        getStocks : function() {
+        getStocks : function(onSuccess,onError) {
             $http.get('/api/stocks')
                 .success(function(data) {
+                    onSuccess(data[0].stockList);
                 })
                 .error(function(data) {
+                    onError(data);
                 });
 
         }

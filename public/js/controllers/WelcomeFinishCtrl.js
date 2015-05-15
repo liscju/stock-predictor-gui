@@ -3,7 +3,14 @@ angular.module('WelcomeFinishCtrl', []).controller('WelcomeFinishController', ["
 
     $scope.finish = function() {
         console.log('Kliknal finish');
-        console.log(StockService.getStocks() );
+        console.log(StockService.getStocks(
+            function (data) {
+                console.log("Success");
+                console.log(data);
+            },function (data) {
+                console.log("Failure");
+                console.log(data);
+            }) );
     };
 
     $scope.gotoPrevPage = function() {

@@ -19,9 +19,7 @@ module.exports = function(app) {
     });
 
     app.post('/api/stocks', function(req,res) {
-        var stocks =  new Stocks();
-        stocks.stockList = req.body.stockList;
-
+        var stocks =  new Stocks({stockList : req.body});
         stocks.save(function (err) {
             if (err)
                 res.send(err);
