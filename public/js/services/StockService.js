@@ -4,8 +4,17 @@ angular.module('StockServiceModule', []).factory('StockService', ['$http', funct
     return {
         // these will work when more API routes are defined on the Node side of things
         // call to POST and create a new stock
-        create : function(stockData) {
-            return $http.post('/api/stocks', stockData);
+        createStocks : function(stockList) {
+            return $http.post('/api/stocks', stockList);
+        },
+
+        getStocks : function() {
+            $http.get('/api/stocks')
+                .success(function(data) {
+                })
+                .error(function(data) {
+                });
+
         }
     }
 

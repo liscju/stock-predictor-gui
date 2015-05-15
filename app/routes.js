@@ -1,7 +1,7 @@
 // app/routes.js
 
-// grab the nerd model we just created
-var Stock = require('./models/stock');
+// grab the stock model we just created
+var Stocks = require('./models/stocks');
 
 module.exports = function(app) {
 
@@ -9,11 +9,20 @@ module.exports = function(app) {
     // handle things like api calls
     // authentication routes
 
-    app.post('/api/stocks', function(req,res) {
-        var stock = new Stock();
-        stock.name = req.body.name;
+    app.get('/api/stocks', function(req,res) {
+        Stocks.find(function(err,stocks) {
+            if (err)
+                res.send(err);
 
-        stock.save(function (err) {
+            res.json(stocks);
+        });
+    });
+
+    app.post('/api/stocks', function(req,res) {
+        var stocks =  new Stocks();
+        stocks.stockList = req.body.stockList;
+
+        stocks.save(function (err) {
             if (err)
                 res.send(err);
 
