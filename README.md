@@ -30,3 +30,8 @@ Dodanie nowej strony:
 5. Dodaj przekierowanie do strony w public/js/appRoute.js
 6. Umiesc swoje przekierowanie do tej strony gdzie tam sobie chcesz
 
+Dodanie nowego serwisu:
+1. Dodaj swoj serwis w public/js/services na wzor StockService
+2. Dodaj nazwe modulu z serwisem w public/js/app.js
+3. Dodaj do kontrolera odwolanie do serwisu,masz wzor w WelcomeStockCtrl w deklaracji kontrolera
+

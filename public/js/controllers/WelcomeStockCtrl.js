@@ -1,5 +1,5 @@
 // public/js/controllers/WelcomeStockCtrl.js
-angular.module('WelcomeStockCtrl', []).controller('WelcomeStockController', function($scope,$location) {
+angular.module('WelcomeStockCtrl', []).controller('WelcomeStockController',["$scope","$location","StockService",function($scope,$location,StockService) {
     $scope.stock_prompt = "Wybierz interesujace cię spółki";
     $scope.stock_to_add = "";
 
@@ -20,12 +20,14 @@ angular.module('WelcomeStockCtrl', []).controller('WelcomeStockController', func
 
     $scope.gotoNextPage = function() {
         $location.path("/welcome_finish");
+        // zapisanie stock_list do bazy
+        StockService.create({name : "Urwal"});
     };
 
     $scope.gotoPrevPage = function() {
         $location.path("/");
     };
-});
+}]);
 
 angular.module('WelcomeStockCtrl').directive('ngEnter', function() {
     return function(scope, element, attrs) {

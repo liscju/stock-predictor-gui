@@ -2,6 +2,7 @@
 
 // grab the nerd model we just created
 var Nerd = require('./models/nerd');
+var Stock = require('./models/stock');
 
 module.exports = function(app) {
 
@@ -20,6 +21,18 @@ module.exports = function(app) {
                 res.send(err);
 
             res.json(nerds); // return all nerds in JSON format
+        });
+    });
+
+    app.post('/api/stocks', function(req,res) {
+        var stock = new Stock();
+        stock.name = req.body.name;
+
+        stock.save(function (err) {
+            if (err)
+                res.send(err);
+
+            res.json({ message: 'Stock created succesfully'})
         });
     });
 
