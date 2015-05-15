@@ -12,7 +12,10 @@
                 </div><!-- /input-group -->
                 <br>
                 <ul class="list-group">
-                    <li class="list-group-item" ng-repeat="stock in stock_list">{{ stock }}</li>
+                    <li class="list-group-item" ng-repeat="stock in stock_list">
+                        {{ stock }}
+                    <i class="fa fa-times" ng-click="delStock(stock)"></i>
+                    </li>
                 </ul>
             </div>
 
