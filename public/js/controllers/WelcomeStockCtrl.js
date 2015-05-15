@@ -16,7 +16,15 @@ angular.module('WelcomeStockCtrl', []).controller('WelcomeStockController', func
         if (indexOfStockToRemove > -1) {
             $scope.stock_list.splice(indexOfStockToRemove,1);
         }
-    }
+    };
+
+    $scope.gotoNextPage = function() {
+
+    };
+
+    $scope.gotoPrevPage = function() {
+        $location.path("/");
+    };
 });
 
 angular.module('WelcomeStockCtrl').directive('ngEnter', function() {
