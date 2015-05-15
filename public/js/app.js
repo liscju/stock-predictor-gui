@@ -1,2 +1,6 @@
 // public/js/app.js
-angular.module('stock-predictor-gui', ['ngRoute', 'appRoutes', 'MainCtrl', 'NerdCtrl', 'NerdService']);
+angular.module('stock-predictor-gui',
+              ['ngRoute', 'appRoutes',
+               'MainCtrl', 'NerdCtrl', 'WelcomePageCtrl',
+               'NerdService']
+);
