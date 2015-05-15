@@ -1,7 +1,7 @@
 // public/js/controllers/Welcome.js
 angular.module('WelcomePageCtrl', []).controller('WelcomePageController', function($scope) {
 
-    $scope.page_title = "Witaj w StockPredictor";
+    $scope.page_title = "Witamy w StockPredictor";
 
     $scope.hello = 'Witaj uzytkowniku!';
 
