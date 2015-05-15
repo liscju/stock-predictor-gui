@@ -3,5 +3,9 @@ angular.module('WelcomeFinishCtrl', []).controller('WelcomeFinishController', fu
 
     $scope.finish = function() {
         console.log('Kliknal finish');
+    };
+
+    $scope.gotoPrevPage = function() {
+        $location.path("/choose_stocks")
     }
 });
