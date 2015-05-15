@@ -10,7 +10,9 @@ angular.module('WelcomeFinishCtrl', []).controller('WelcomeFinishController', ["
             },function (data) {
                 console.log("Failure");
                 console.log(data);
-            }) );
+            })
+        );
+        $location.path("/main");
     };
 
     $scope.gotoPrevPage = function() {

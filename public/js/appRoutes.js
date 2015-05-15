@@ -17,6 +17,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         .when('/welcome_finish', {
             templateUrl: 'views/welcome_finish.html',
             controller: 'WelcomeFinishController'
+        })
+
+        .when('/main', {
+            templateUrl: 'views/main.html',
+            controller: 'MainController'
         });
 
     $locationProvider.html5Mode(true);
