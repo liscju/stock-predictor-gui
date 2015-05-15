@@ -6,6 +6,6 @@ angular.module('WelcomeFinishCtrl', []).controller('WelcomeFinishController', fu
     };
 
     $scope.gotoPrevPage = function() {
-        $location.path("/choose_stocks")
+        $location.path("/welcome_choose_stocks")
     }
 });

@@ -5,12 +5,12 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 
         // home page
         .when('/', {
-            templateUrl: 'views/welcome.html',
+            templateUrl: 'views/welcome_start.html',
             controller: 'WelcomePageController'
         })
 
-        .when('/choose_stocks', {
-            templateUrl: 'views/choose_stocks.html',
+        .when('/welcome_choose_stocks', {
+            templateUrl: 'views/welcome_choose_stocks.html',
             controller: 'WelcomeStockController'
         })
 

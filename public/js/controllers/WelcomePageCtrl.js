@@ -12,6 +12,6 @@ angular.module('WelcomePageCtrl', []).controller('WelcomePageController', functi
     $scope.next_page = 'Następna';
 
     $scope.gotoNextPage = function () {
-        $location.path("/choose_stocks");
+        $location.path("/welcome_choose_stocks");
     };
 });
