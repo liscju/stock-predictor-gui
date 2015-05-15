@@ -1,11 +1,11 @@
 Development
 
 Po sciagnieciu zrodel:
-npm install
-bower install
+* npm install
+* bower install
 
 Uruchomienie:
-node server.js
+* node server.js
 
 ale polecam uruchomienie przy pomocy nodemon,
 wtedy samodzielnie wczytuje od nowa stronke
@@ -13,27 +13,27 @@ jak zmieniasz kod zrodlowy i nie musisz od nowa
 uruchamiac tego node.server.js itp
 instalujesz nodemon w ten sposob:
 
-npm install -g nodemon
+* npm install -g nodemon
 
 jak juz zainstaluje uruchamiasz apke:
 
-nodemon server.js
+* nodemon server.js
 
 i cieszysz sie ze przy zmianie plikow zrodlowych
 przeladowuje ci apke samodzielnie
 
 Dodanie nowej strony:
-1. Dodaj kontroler w public/js/controllers
-2. Dodaj strone w public/views
-3. Umiesc skrypt z kontrolerem w index.html
-4. Dodaj plik kontrolera w public/js/app.js
-5. Dodaj przekierowanie do strony w public/js/appRoute.js
-6. Umiesc swoje przekierowanie do tej strony gdzie tam sobie chcesz
+*  Umiesc swoje przekierowanie do tej strony gdzie tam sobie chcesz
+*  Dodaj kontroler w public/js/controllers
+*  Dodaj strone w public/views
+*  Umiesc skrypt z kontrolerem w index.html
+*  Dodaj plik kontrolera w public/js/app.js
+*  Dodaj przekierowanie do strony w public/js/appRoute.js
 
 Dodanie nowego serwisu:
-1. Dodaj swoj serwis w public/js/services na wzor StockService
-2. Dodaj nazwe modulu z serwisem w public/js/app.js
-3. Dodaj do kontrolera odwolanie do serwisu,masz wzor w WelcomeStockCtrl w deklaracji kontrolera
+*  Dodaj swoj serwis w public/js/services na wzor StockService
+*  Dodaj nazwe modulu z serwisem w public/js/app.js
+*  Dodaj do kontrolera odwolanie do serwisu,masz wzor w WelcomeStockCtrl w deklaracji kontrolera
 
 Baza danych:
 Do testów korzystam z bazy ze swojej bazy w mongolab,jeżeli chcialbys
