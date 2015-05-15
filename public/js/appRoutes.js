@@ -9,6 +9,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
             controller: 'WelcomePageController'
         })
 
+        .when('/choose_stocks', {
+            templateUrl: 'views/choose_stocks.html',
+            controller: 'WelcomeStockController'
+        })
+
         // nerds page that will use the NerdController
         .when('/nerds', {
             templateUrl: 'views/nerd.html',

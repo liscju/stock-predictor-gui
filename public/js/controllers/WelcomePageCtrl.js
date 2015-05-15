@@ -1,5 +1,5 @@
-// public/js/controllers/Welcome.js
-angular.module('WelcomePageCtrl', []).controller('WelcomePageController', function($scope) {
+// public/js/controllers/WelcomePageCtrl.js
+angular.module('WelcomePageCtrl', []).controller('WelcomePageController', function($scope,$location) {
 
     $scope.page_title = "Witamy w StockPredictor";
 
@@ -10,4 +10,8 @@ angular.module('WelcomePageCtrl', []).controller('WelcomePageController', functi
                     'interesujące Cię akcję do obserwacji ';
 
     $scope.next_page = 'Następna';
+
+    $scope.gotoNextPage = function () {
+        $location.path("/choose_stocks");
+    };
 });
