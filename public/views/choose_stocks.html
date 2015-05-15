@@ -1,18 +1,21 @@
 <div class="jumbotron text-center">
     <div class="row">
-        <div class="col-lg-6">
-        <p>{{ stock_prompt }}</p>
-        <div class="col-lg-6">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Kod spółki">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Dodaj</button>
-              </span>
-            </div><!-- /input-group -->
-            <br>
-            <ul class="list-group">
-                <li class="list-group-item" ng-repeat="stock in stock_list">{{ stock }}</li>
-            </ul>
-        </div><!-- /.col-lg-6 -->
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <p>{{ stock_prompt }}</p>
+            <div>
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Kod spółki">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Dodaj</button>
+                  </span>
+                </div><!-- /input-group -->
+                <br>
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="stock in stock_list">{{ stock }}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
     </div>
 </div>
