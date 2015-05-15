@@ -8,6 +8,10 @@ angular.module('StockServiceModule', []).factory('StockService', ['$http', funct
             return $http.post('/api/stocks', stockList);
         },
 
+        removeStocks : function() {
+            return $http.delete('/api/stocks');
+        },
+
         getStocks : function(onSuccess,onError) {
             $http.get('/api/stocks')
                 .success(function(data) {

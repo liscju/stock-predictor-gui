@@ -21,6 +21,7 @@ angular.module('WelcomeStockCtrl', []).controller('WelcomeStockController',["$sc
     $scope.gotoNextPage = function() {
         $location.path("/welcome_finish");
         // zapisanie stock_list do bazy
+        StockService.removeStocks();
         StockService.createStocks($scope.stock_list);
     };
 

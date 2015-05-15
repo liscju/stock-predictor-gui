@@ -28,6 +28,15 @@ module.exports = function(app) {
         });
     });
 
+    app.delete('/api/stocks', function(req,res) {
+        Stocks.find().remove(function (err) {
+            if (err)
+                res.send(err);
+
+            res.json({ message: 'Stock deleted succesfully'});
+        });
+    });
+
     // route to handle creating goes here (app.post)
     // route to handle delete goes here (app.delete)
 
