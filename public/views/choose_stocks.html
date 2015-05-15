@@ -5,7 +5,7 @@
             <p>{{ stock_prompt }}</p>
             <div>
                 <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Kod spółki" ng-model="stock_to_add">
+                  <input type="text" class="form-control" placeholder="Kod spółki" ng-model="stock_to_add" ng-enter="addStock(stock_to_add)">
                   <span class="input-group-btn">
                     <button class="btn btn-default" type="button" ng-click="addStock(stock_to_add)">Dodaj</button>
                   </span>
