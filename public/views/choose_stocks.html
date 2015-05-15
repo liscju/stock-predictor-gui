@@ -5,9 +5,9 @@
             <p>{{ stock_prompt }}</p>
             <div>
                 <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Kod spółki">
+                  <input type="text" class="form-control" placeholder="Kod spółki" ng-model="stock_to_add">
                   <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Dodaj</button>
+                    <button class="btn btn-default" type="button" ng-click="addStock(stock_to_add)">Dodaj</button>
                   </span>
                 </div><!-- /input-group -->
                 <br>
@@ -15,6 +15,9 @@
                     <li class="list-group-item" ng-repeat="stock in stock_list">{{ stock }}</li>
                 </ul>
             </div>
+
+            <button type="button" class="btn btn-primary pull-right" ng-click="gotoNextPage()">Następna</button>
+            <button type="button" class="btn btn-primary pull-right" ng-click="gotoPrevPage()">Poprzednia</button>
         </div>
         <div class="col-md-2"></div>
     </div>
