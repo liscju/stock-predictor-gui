@@ -10,6 +10,13 @@ angular.module('WelcomeStockCtrl', []).controller('WelcomeStockController', func
         $scope.stock_list.push(stock);
         $scope.stock_to_add = "";
     };
+
+    $scope.delStock = function(stock) {
+        var indexOfStockToRemove = $scope.stock_list.indexOf(stock);
+        if (indexOfStockToRemove > -1) {
+            $scope.stock_list.splice(indexOfStockToRemove,1);
+        }
+    }
 });
 
 angular.module('WelcomeStockCtrl').directive('ngEnter', function() {
