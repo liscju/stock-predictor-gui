@@ -1,4 +1,4 @@
-<div class="jumbotron text-center">
+<div class="jumbotron text-center" ng-init="init()">
     <div class="row">
 
         <tabset justified="true">
@@ -14,16 +14,66 @@
                 <div class="col-md-2"></div>
             </tab>
             <tab heading="Wykresy">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <br><br><br><br>
-                    <h2>To strona z wykresami</h2>
+                <div>
+                    <br><br>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4 class="pull-left">Wybierz spółkę</h4>
+                            <div class="btn-group" dropdown>
+                                <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+                                    {{ current_stock }}<span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ng-repeat="stock in stock_list">
+                                        <a href ng-click="choose_stock(stock)">{{stock}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-8"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4 class="pull-left">Typ wykresu</h4>
+                            <div class="btn-group" dropdown>
+                                <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+                                    {{ current_chart_type }}<span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ng-repeat="chart_type in chart_types">
+                                        <a href ng-click="choose_chart_type(chart_type)">{{chart_type}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-8"></div>
+                    </div>
                 </div>
-                <div class="col-md-2"></div>
+                <div class="row">
+                    <hr class="col-md-12">
+                </div>
+                <div class="row">
+                    <div class="col-md-8 pull-left" style="padding-right:20px; border-right: 1px solid #ccc;">
+                        Left panel
+                    </div>
+                    <div class="col-md-4 pull-right">
+                        <h4>From</h4>
+                        <div style="display:inline-block; min-height:290px;">
+                            <datepicker ng-model="chart_from_date" class="well well-sm" custom-class="getDayClass(date, mode)"></datepicker>
+                        </div>
+                        <h4>To</h4>
+                        <div style="display:inline-block; min-height:290px;">
+                            <datepicker ng-model="chart_to_date" class="well well-sm" custom-class="getDayClass(date, mode)"></datepicker>
+                        </div>
+                        <div>
+                            From: {{ chart_from_date}} To: {{ chart_to_date }}
+                        </div>
+                    </div>
+                </div>
             </tab>
             <tab heading="Konfiguracja">
                 <div class="col-md-2"></div>
-                <div class="col-md-8" ng-controller="MainConfigurationController" ng-init="init()">
+                <div class="col-md-8">
                     <br><br><br><br>
 
                     <div>
