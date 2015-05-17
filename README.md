@@ -37,4 +37,10 @@ Dodanie nowego serwisu:
 
 Baza danych:
 Do testów korzystam z bazy ze swojej bazy w mongolab,jeżeli chcialbys
-uzyc innej zmien url w /config/db.js 
+uzyc innej zmien url w /config/db.js
+
+Kalendarz:
+- angular-bootstrap https://angular-ui.github.io/bootstrap/
+
+Wykres:
+- http://www.amcharts.com/
