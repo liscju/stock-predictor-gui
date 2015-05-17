@@ -23,9 +23,26 @@
             </tab>
             <tab heading="Konfiguracja">
                 <div class="col-md-2"></div>
-                <div class="col-md-8" ng-controller="MainConfigurationController">
+                <div class="col-md-8" ng-controller="MainConfigurationController" ng-init="init()">
                     <br><br><br><br>
-                    <h2>To strona z konfiguracja i {{ hello }}</h2>
+
+                    <div>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Kod spółki" ng-model="stock_to_add"
+                                   ng-enter="addStock(stock_to_add)">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" ng-click="addStock(stock_to_add)">Dodaj</button>
+                            </span>
+                        </div>
+                        <!-- /input-group -->
+                        <br>
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="stock in stock_list">
+                                {{ stock }}
+                                <i class="fa fa-times" ng-click="delStock(stock)"></i>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-md-2"></div>
             </tab>
