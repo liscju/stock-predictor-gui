@@ -24,7 +24,7 @@ module.exports = function(app) {
             if (err)
                 res.send(err);
 
-            res.json({ message: 'Stock created succesfully'})
+            res.json({ message: 'Stock created succesfully'});
         });
     });
 
@@ -34,6 +34,15 @@ module.exports = function(app) {
                 res.send(err);
 
             res.json({ message: 'Stock deleted succesfully'});
+        });
+    });
+
+    app.put('/api/stocks', function(req,res) {
+        Stocks.find().update({stockList :req.body},function(err) {
+            if (err)
+                res.send(err);
+
+            res.json({ message: 'Stock updated succesfully'})
         });
     });
 

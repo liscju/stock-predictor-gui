@@ -1,6 +1,5 @@
 // public/js/controllers/MainConfigurationCtrl.js
 angular.module('MainConfigurationCtrl', []).controller('MainConfigurationController', ["$scope","$location","StockService",function($scope,$location,StockService) {
-    $scope.hello = "UDALO SIE ZALADOWAC MainConfigurationCtrl.js";
 
     $scope.stock_list = [
     ];
@@ -19,6 +18,7 @@ angular.module('MainConfigurationCtrl', []).controller('MainConfigurationControl
     $scope.addStock = function (stock) {
         $scope.stock_list.push(stock);
         $scope.stock_to_add = "";
+        StockService.updateStocks($scope.stock_list);
     };
 
     $scope.delStock = function(stock) {
@@ -26,6 +26,7 @@ angular.module('MainConfigurationCtrl', []).controller('MainConfigurationControl
         if (indexOfStockToRemove > -1) {
             $scope.stock_list.splice(indexOfStockToRemove,1);
         }
+        StockService.updateStocks($scope.stock_list);
     };
 
 }]);

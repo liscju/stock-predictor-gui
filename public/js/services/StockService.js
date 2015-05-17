@@ -21,6 +21,10 @@ angular.module('StockServiceModule', []).factory('StockService', ['$http', funct
                     onError(data);
                 });
 
+        },
+
+        updateStocks: function(stockList) {
+            $http.put('/api/stocks',stockList);
         }
     }
 
