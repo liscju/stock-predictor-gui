@@ -16,3 +16,8 @@ hr {
     background-color: #000000;
     height: 1px;
 }
+
+#chartdiv {background: #3f3f4f;color:#ffffff;
+    width	: 100%;
+    height	: 500px;
+}
