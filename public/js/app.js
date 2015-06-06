@@ -3,5 +3,5 @@ angular.module('stock-predictor-gui',
               ['ngRoute', 'appRoutes','ui.bootstrap',
                'WelcomePageCtrl','WelcomeStockCtrl','WelcomeFinishCtrl',
                'MainCtrl',
-               'StockServiceModule']
+               'StockServiceModule','ChartDataServiceModule']
 );
