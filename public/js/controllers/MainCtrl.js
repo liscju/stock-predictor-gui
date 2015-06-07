@@ -84,7 +84,7 @@ angular.module('MainCtrl', []).controller('MainController', ["$scope","$location
     };
 
     $scope.reset_chart = function() {
-        if(dates.compare($scope.chart_from_date,$scope.chart_to_date)<=0) {
+        if($scope.chart_from_date<=$scope.chart_to_date) {
             $scope.fetch_data();
             $scope.update_chart();
         }
