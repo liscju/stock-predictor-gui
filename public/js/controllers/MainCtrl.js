@@ -17,6 +17,7 @@ angular.module('MainCtrl', []).controller('MainController', ["$scope","$location
     $scope.chart_to_date = new Date();
 
     $scope.chart_data=null;
+    $scope.chart_data_simple=null;
 
     $scope.init = function() {
         StockService.getStocks(
@@ -55,6 +56,7 @@ angular.module('MainCtrl', []).controller('MainController', ["$scope","$location
                 console.log(data);
                 //var parsedObject=JSON.parse(data);
                 $scope.chart_data=new Array(data.candles.length);
+                $scope.chart_data_simple=new Array(data.candles.length);
                 for(var i=0;i<data.candles.length;i++) {
                     $scope.chart_data[i]={};
                     $scope.chart_data[i].date=data.candles[i].date;
@@ -62,6 +64,9 @@ angular.module('MainCtrl', []).controller('MainController', ["$scope","$location
                     $scope.chart_data[i].low=data.candles[i].maxPrice;
                     $scope.chart_data[i].open=data.candles[i].openingPrice;
                     $scope.chart_data[i].close=data.candles[i].closingPrice;
+                    $scope.chart_data_simple[i]={};
+                    $scope.chart_data_simple[i].date=data.candles[i].date;
+                    $scope.chart_data_simple[i].value=(data.candles[i].minPrice+data.candles[i].maxPrice)/2.0;
                 }
                 console.log($scope.chart_data);
             },function (data) {
@@ -166,28 +171,7 @@ angular.module('MainCtrl', []).controller('MainController', ["$scope","$location
             "export": {
                 "enabled": true
             },
-            "dataProvider": [{
-                "date": "2012-07-27",
-                "value": 13
-            }, {
-                "date": "2012-07-28",
-                "value": 11
-            }, {
-                "date": "2012-07-29",
-                "value": 15
-            }, {
-                "date": "2012-07-30",
-                "value": 16
-            }, {
-                "date": "2012-07-31",
-                "value": 18
-            }, {
-                "date": "2012-08-01",
-                "value": 13
-            }, {
-                "date": "2012-08-02",
-                "value": 22
-            }]
+            "dataProvider": $scope.chart_data_simple
         });
 
         chart.addListener("rendered", zoomChart);
