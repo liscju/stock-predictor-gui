@@ -59,11 +59,11 @@
                     <div class="col-md-4 pull-right">
                         <h4>From</h4>
                         <div style="display:inline-block; min-height:290px;">
-                            <datepicker ng-model="chart_from_date" class="well well-sm" custom-class="getDayClass(date, mode)"></datepicker>
+                            <datepicker ng-model="chart_from_date" ng-change="reset_chart()" class="well well-sm" custom-class="getDayClass(date, mode)"></datepicker>
                         </div>
                         <h4>To</h4>
                         <div style="display:inline-block; min-height:290px;">
-                            <datepicker ng-model="chart_to_date" class="well well-sm" custom-class="getDayClass(date, mode)"></datepicker>
+                            <datepicker ng-model="chart_to_date" ng-change="reset_chart()" class="well well-sm" custom-class="getDayClass(date, mode)"></datepicker>
                         </div>
                         <div>
                             From: {{ chart_from_date}} To: {{ chart_to_date }}

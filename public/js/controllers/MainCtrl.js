@@ -31,13 +31,14 @@ angular.module('MainCtrl', []).controller('MainController', ["$scope","$location
             });
 
         angular.element(document).ready(function () {
-            $scope.fetch_data(chart_from_date,chart_to_date,current_stock);
+            $scope.fetch_data($scope.chart_from_date,$scope.chart_to_date,$scope.current_stock);
             $scope.draw_simple_graph();
         });
     };
 
     $scope.choose_stock = function(stock) {
         $scope.current_stock = stock;
+        $scope.reset_chart();
     };
 
     $scope.choose_chart_type = function(chart_type) {
@@ -48,18 +49,21 @@ angular.module('MainCtrl', []).controller('MainController', ["$scope","$location
     //retrieve data from the server
     $scope.fetch_data = function(startDate,endDate,company) {
 
-        ChartDataService.getStocks(
+        ChartDataService.getData(
             function (data) {
                 console.log("Successfully fetched chart data.");
-                var parsedObject=JSON.parse(data);
-                $scope.chart_data=new Array(parsedObject.candles.length);
-                for(var i=0;i<parsedObject.candles.length;i++) {
-                    $scope.chart_data[i].date=parsedObject.candles[i].date;
-                    $scope.chart_data[i].high=parsedObject.candles[i].minPrice;
-                    $scope.chart_data[i].low=parsedObject.candles[i].maxPrice;
-                    $scope.chart_data[i].open=parsedObject.candles[i].openingPrice;
-                    $scope.chart_data[i].close=parsedObject.candles[i].closingPrice;
+                console.log(data);
+                //var parsedObject=JSON.parse(data);
+                $scope.chart_data=new Array(data.candles.length);
+                for(var i=0;i<data.candles.length;i++) {
+                    $scope.chart_data[i]={};
+                    $scope.chart_data[i].date=data.candles[i].date;
+                    $scope.chart_data[i].high=data.candles[i].minPrice;
+                    $scope.chart_data[i].low=data.candles[i].maxPrice;
+                    $scope.chart_data[i].open=data.candles[i].openingPrice;
+                    $scope.chart_data[i].close=data.candles[i].closingPrice;
                 }
+                console.log($scope.chart_data);
             },function (data) {
                 console.log("Failure while fetching chart data.");
                 console.log(data);
@@ -73,6 +77,13 @@ angular.module('MainCtrl', []).controller('MainController', ["$scope","$location
             $scope.draw_candle_graph();
         }
     };
+
+    $scope.reset_chart = function() {
+        if(dates.compare($scope.chart_from_date,$scope.chart_to_date)<=0) {
+            $scope.fetch_data();
+            $scope.update_chart();
+        }
+    }
 
     $scope.addStock = function (stock) {
         $scope.stock_list.push(stock);
