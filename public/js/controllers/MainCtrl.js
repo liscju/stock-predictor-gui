@@ -12,6 +12,8 @@ angular.module('MainCtrl', []).controller('MainController', ["$scope","$location
 
     $scope.current_chart_type=$scope.chart_types[0];
 
+    $scope.parent={chart_from_date:new Date(),
+    chart_to_date:new Date()};
     $scope.chart_from_date = new Date();
 
     $scope.chart_to_date = new Date();
@@ -32,8 +34,9 @@ angular.module('MainCtrl', []).controller('MainController', ["$scope","$location
             });
 
         angular.element(document).ready(function () {
-            $scope.fetch_data($scope.chart_from_date,$scope.chart_to_date,$scope.current_stock);
-            $scope.draw_simple_graph();
+            //$scope.fetch_data($scope.chart_from_date,$scope.chart_to_date,$scope.current_stock);
+            //$scope.draw_simple_graph();
+            $scope.reset_chart();
         });
     };
 
@@ -55,20 +58,22 @@ angular.module('MainCtrl', []).controller('MainController', ["$scope","$location
                 console.log("Successfully fetched chart data.");
                 console.log(data);
                 //var parsedObject=JSON.parse(data);
-                $scope.chart_data=new Array(data.candles.length);
-                $scope.chart_data_simple=new Array(data.candles.length);
-                for(var i=0;i<data.candles.length;i++) {
-                    $scope.chart_data[i]={};
-                    $scope.chart_data[i].date=data.candles[i].date;
-                    $scope.chart_data[i].high=data.candles[i].minPrice;
-                    $scope.chart_data[i].low=data.candles[i].maxPrice;
-                    $scope.chart_data[i].open=data.candles[i].openingPrice;
-                    $scope.chart_data[i].close=data.candles[i].closingPrice;
-                    $scope.chart_data_simple[i]={};
-                    $scope.chart_data_simple[i].date=data.candles[i].date;
-                    $scope.chart_data_simple[i].value=(data.candles[i].minPrice+data.candles[i].maxPrice)/2.0;
+                if (data !== null && typeof(data)==='object' && 'candles' in data) {
+                    $scope.chart_data = new Array(data.candles.length);
+                    $scope.chart_data_simple = new Array(data.candles.length);
+                    for (var i = 0; i < data.candles.length; i++) {
+                        $scope.chart_data[i] = {};
+                        $scope.chart_data[i].date = data.candles[i].date;
+                        $scope.chart_data[i].high = data.candles[i].minPrice;
+                        $scope.chart_data[i].low = data.candles[i].maxPrice;
+                        $scope.chart_data[i].open = data.candles[i].openingPrice;
+                        $scope.chart_data[i].close = data.candles[i].closingPrice;
+                        $scope.chart_data_simple[i] = {};
+                        $scope.chart_data_simple[i].date = data.candles[i].date;
+                        $scope.chart_data_simple[i].value = (data.candles[i].minPrice + data.candles[i].maxPrice) / 2.0;
+                    }
+                    console.log($scope.chart_data);
                 }
-                console.log($scope.chart_data);
             },function (data) {
                 console.log("Failure while fetching chart data.");
                 console.log(data);
@@ -84,8 +89,9 @@ angular.module('MainCtrl', []).controller('MainController', ["$scope","$location
     };
 
     $scope.reset_chart = function() {
-        if($scope.chart_from_date<=$scope.chart_to_date) {
-            $scope.fetch_data();
+        console.log($scope.parent.chart_from_date+" "+$scope.parent.chart_to_date);
+        if($scope.parent.chart_from_date<=$scope.parent.chart_to_date) {
+            $scope.fetch_data($scope.parent.chart_from_date,$scope.parent.chart_to_date,$scope.current_stock);
             $scope.update_chart();
         }
     }
@@ -108,6 +114,7 @@ angular.module('MainCtrl', []).controller('MainController', ["$scope","$location
     $scope.getDayClass = function(date, mode) {
         console.log("Date:",date);
         console.log("Mode:",mode);
+        
     };
 
 
@@ -179,7 +186,8 @@ angular.module('MainCtrl', []).controller('MainController', ["$scope","$location
         zoomChart();
 
         function zoomChart() {
-            chart.zoomToIndexes(chart.dataProvider.length - 40, chart.dataProvider.length - 1);
+            if(chart.dataProvider!=null)
+                chart.zoomToIndexes(chart.dataProvider.length - 40, chart.dataProvider.length - 1);
         }
     };
 
@@ -235,7 +243,8 @@ angular.module('MainCtrl', []).controller('MainController', ["$scope","$location
         // this method is called when chart is first inited as we listen for "dataUpdated" event
         function zoomChart() {
             // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
-            chart.zoomToIndexes( chart.dataProvider.length - 10, chart.dataProvider.length - 1 );
+            if(chart.dataProvider!=null)
+                chart.zoomToIndexes( chart.dataProvider.length - 10, chart.dataProvider.length - 1 );
         }
     };
 }]);
