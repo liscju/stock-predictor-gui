@@ -25,6 +25,14 @@ angular.module('ChartDataServiceModule', []).factory('ChartDataService', ['$http
                 }).error(function(data) {
                     onError(data);
             });
+        },
+        getPredictions : function(onSuccess,onError,companyName) {
+            $http.get('http://localhost:8080/StockPredictor/predict?companyShortName='+companyName)
+                .success(function(data) {
+                    onSuccess(data);
+                }).error(function(data) {
+                    onError(data);
+                });
         }
     }
 

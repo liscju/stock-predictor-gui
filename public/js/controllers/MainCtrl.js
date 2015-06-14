@@ -21,6 +21,9 @@ angular.module('MainCtrl', []).controller('MainController', ["$scope","$location
     $scope.chart_data=null;
     $scope.chart_data_simple=null;
 
+    $scope.prediction_data=null;
+    $scope.prediction_data_simple=null;
+
     $scope.init = function() {
         StockService.getStocks(
             function (data) {
@@ -36,7 +39,7 @@ angular.module('MainCtrl', []).controller('MainController', ["$scope","$location
         angular.element(document).ready(function () {
             //$scope.fetch_data($scope.chart_from_date,$scope.chart_to_date,$scope.current_stock);
             //$scope.draw_simple_graph();
-            $scope.reset_chart();
+            //$scope.reset_chart();
         });
     };
 
@@ -78,6 +81,45 @@ angular.module('MainCtrl', []).controller('MainController', ["$scope","$location
                 console.log("Failure while fetching chart data.");
                 console.log(data);
             },startDate,endDate,company);
+        ChartDataService.getPredictions(
+            function (data) {
+                console.log("Successfully fetched prediction data.");
+                console.log(data);
+                //var parsedObject=JSON.parse(data);
+                if (data !== null && typeof(data)==='object' && 'stocks' in data) {/*
+                    $scope.prediction_data = new Array(data.stocks.length);
+                    $scope.prediction_data_simple = new Array(data.stocks.length);
+                    for (var i = 0; i < data.stocks.length; i++) {
+                        if(new Date(data.stocks[i].dateAndTime)>$scope.parent.chart_from_date && new Date(data.stocks[i].dateAndTime)<$scope.parent.chart_to_date) {
+                            $scope.prediction_data[i] = {};
+                            $scope.prediction_data[i].date = data.stocks[i].dateAndTime;
+                            $scope.prediction_data[i].high = data.stocks[i].value;
+                            $scope.prediction_data[i].low = data.stocks[i].value;
+                            $scope.prediction_data[i].open = data.stocks[i].value;
+                            $scope.prediction_data[i].close = data.stocks[i].value;
+                            $scope.prediction_data_simple[i] = {};
+                            $scope.prediction_data_simple[i].date = data.stocks[i].dateAndTime;
+                            $scope.prediction_data_simple[i].value = data.stocks[i].value;
+                        }
+                    }*/
+                    var x=new Date();
+                    $scope.prediction_data = {};
+                    $scope.prediction_data.date = new Date();
+                    $scope.prediction_data.date.setDate(x.getDate()+1);
+                    $scope.prediction_data.high = data.prediction;
+                    $scope.prediction_data.low = data.prediction;
+                    $scope.prediction_data.open = data.prediction;
+                    $scope.prediction_data.close = data.prediction;
+                    $scope.prediction_data_simple = {};
+                    $scope.prediction_data_simple.date = new Date();
+                    $scope.prediction_data_simple.date.setDate(x.getDate()+1);
+                    console.log($scope.prediction_data);
+                }
+            },function (data) {
+                console.log("Failure while fetching prediction data.");
+                console.log(data);
+            },company
+        )
     };
 
     $scope.update_chart = function() {
@@ -178,6 +220,16 @@ angular.module('MainCtrl', []).controller('MainController', ["$scope","$location
             "export": {
                 "enabled": true
             },
+            /*"dataSets":[
+                {
+                    "title":"past data",
+                    "dataProvider":$scope.chart_data_simple
+                },
+                {
+                    "title":"predictions",
+                    "dataProvider":$scope.prediction_data_simple
+                }
+            ]*/
             "dataProvider": $scope.chart_data_simple
         });
 
@@ -216,7 +268,24 @@ angular.module('MainCtrl', []).controller('MainController', ["$scope","$location
                 "title": "Price:",
                 "type": "candlestick",
                 "valueField": "close"
-            } ],
+            }/*,
+                {
+                    "id": "g2",
+                    "balloonText": "Open:<b>[[open]]</b><br>Low:<b>[[low]]</b><br>High:<b>[[high]]</b><br>Close:<b>[[close]]</b><br>",
+                    "closeField": "close",
+                    "fillColors": "#7f8da9",
+                    "highField": "high",
+                    "lineColor": "#7f8da9",
+                    "lineAlpha": 1,
+                    "lowField": "low",
+                    "fillAlphas": 0.9,
+                    "negativeFillColors": "#db4c3c",
+                    "negativeLineColor": "#db4c3c",
+                    "openField": "open",
+                    "title": "Price:",
+                    "type": "candlestick",
+                    "valueField": "close"
+                }*/],
             "chartScrollbar": {
                 "graph": "g1",
                 "graphType": "line",
@@ -229,8 +298,18 @@ angular.module('MainCtrl', []).controller('MainController', ["$scope","$location
             "categoryField": "date",
             "categoryAxis": {
                 "parseDates": true
-            },
-            "dataProvider": $scope.chart_data,
+            }
+            ,"dataProvider": $scope.chart_data
+            ,/*"dataSets": [
+                {
+                    "title":"past data",
+                    "dataProvider":$scope.chart_data
+                },
+                {
+                    "title":"predictions",
+                    "dataProvider":$scope.prediction_data
+                }
+            ],*/
             "export": {
                 "enabled": true,
                 "position": "bottom-right"
